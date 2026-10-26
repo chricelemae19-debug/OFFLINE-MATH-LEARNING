@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2878ff">
+<meta name="description" content="Math Adventure - Grade 3 Offline Interactive Mathematics Learning System">
+<title>Math Adventure - Grade 3</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <div><h2>🧮 Math Adventure</h2></div>
+  <div class="top-controls">
+    <button id="musicToggle" type="button">🎵</button>
+    <button id="soundToggle" type="button">🔊</button>
+    <button id="installButton" type="button" hidden>📱 Install</button>
+  </div>
+</header>
+
+<section id="loginPage" class="page active">
+  <div class="card login-card">
+    <div class="big-emoji">🧮</div>
+    <h1>Math Adventure</h1>
+    <p>Welcome to your Grade 3 Mathematics Adventure!</p>
+    <p>Learn, practice, and have fun with Math.</p>
+
+    <input
+      type="text"
+      id="studentName"
+      placeholder="Enter your name"
+      autocomplete="name"
+    >
+
+    <button
+      id="startButton"
+      class="primary-button"
+      type="button"
+      onclick="login()"
+    >
+      🚀 START ADVENTURE
+    </button>
+  </div>
+</section>
+
+<section id="homePage" class="page">
+  <div class="card home-card">
+    <div class="big-emoji">🏠</div>
+
+    <h1>
+      Welcome,
+      <span id="welcomeName">Student</span>!
+    </h1>
+
+    <p>
+      Choose a term, study the weekly topic,
+      then answer the activity.
+    </p>
+
+    <div class="fruit-row">
+      📚 🧮 ⭐ ✏️ 🏆
+    </div>
+
+    <div class="home-buttons">
+      <button
+        class="primary-button"
+        type="button"
+        onclick="showPage('termPage')"
+      >
+        📚 CHOOSE TERM & WEEK
+      </button>
+
+      <button
+        class="secondary-button"
+        type="button"
+        onclick="showProgress()"
+      >
+        📊 MY PROGRESS
+      </button>
+
+      <button
+        class="progress-button"
+        type="button"
+        onclick="showPage('aboutPage')"
+      >
+        ℹ️ ABOUT MATH ADVENTURE
+      </button>
+
+      <button
+        class="back-button"
+        type="button"
+        onclick="showPage('helpPage')"
+      >
+        ❓ HELP
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="termPage" class="page adventure-page">
+
+  <div class="adventure-header">
+    <div class="header-mascot">📚</div>
+
+    <h1>CHOOSE A TERM</h1>
+
+    <p>Select the term you want to study.</p>
+  </div>
+
+  <div class="operation-container">
+
+    <div class="operation addition">
+
+      <div class="operation-image">
+        <div class="fallback-icon">📗</div>
+      </div>
+
+      <h2>First Term</h2>
+
+      <p>
+        Measurement and Geometry,
+        Number and Algebra
+      </p>
+
+      <button
+        type="button"
+        onclick="selectTerm('First Term')"
+      >
+        📗 OPEN FIRST TERM
+      </button>
+
+    </div>
+
+    <div class="operation subtraction">
+
+      <div class="operation-image">
+        <div class="fallback-icon">📘</div>
+      </div>
+
+      <h2>Second Term</h2>
+
+      <p>
+        Measurement, Number and Algebra,
+        Data and Probability
+      </p>
+
+      <button
+        type="button"
+        onclick="selectTerm('Second Term')"
+      >
+        📘 OPEN SECOND TERM
+      </button>
+
+    </div>
+
+    <div class="operation multiplication">
+
+      <div class="operation-image">
+        <div class="fallback-icon">📕</div>
+      </div>
+
+      <h2>Third Term</h2>
+
+      <p>
+        Multiplication, Division,
+        Fractions, Patterns and Geometry
+      </p>
+
+      <button
+        type="button"
+        onclick="selectTerm('Third Term')"
+      >
+        📕 OPEN THIRD TERM
+      </button>
+
+    </div>
+
+  </div>
+
+  <button
+    class="back-button"
+    type="button"
+    onclick="showPage('homePage')"
+  >
+    ← BACK HOME
+  </button>
+
+</section>
+
+<section id="weekPage" class="page adventure-page">
+
+  <div class="adventure-header">
+
+    <div class="header-mascot">🗓️</div>
+
+    <h1 id="termTitle">
+      WEEKLY TOPICS
+    </h1>
+
+    <p>
+      Choose a week to view its Topic Presentation.
+    </p>
+
+  </div>
+
+  <div
+    id="weekContainer"
+    class="operation-container"
+  ></div>
+
+  <button
+    class="back-button"
+    type="button"
+    onclick="showPage('termPage')"
+  >
+    ← BACK TO TERMS
+  </button>
+
+</section>
+
+<!-- ======================================================
+     TOPIC PRESENTATION
+     PPT STYLE
+====================================================== -->
+
+<section id="topicPage" class="page">
+
+  <div class="ppt-shell">
+
+    <div class="ppt-heading">
+
+      <div class="big-emoji">
+        📖
+      </div>
+
+      <div>
+
+        <div class="ppt-kicker">
+          TEACHER-READY LESSON PRESENTATION
+        </div>
+
+        <h1 id="topicTitle">
+          Weekly Topic
+        </h1>
+
+        <p
+          id="topicArea"
+          class="ppt-subtitle"
+        >
+          Learning Area
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="ppt-progress-track">
+
+      <div
+        id="pptProgressBar"
+        class="ppt-progress-bar"
+      ></div>
+
+    </div>
+
+    <div
+      class="ppt-slide-counter"
+      id="pptSlideNumber"
+    >
+      1 / 1
+    </div>
+
+    <div class="ppt-slide">
+
+      <div
+        id="pptIcon"
+        class="ppt-icon"
+      >
+        📖
+      </div>
+
+      <div
+        id="pptTag"
+        class="ppt-tag"
+      >
+        LESSON PRESENTATION
+      </div>
+
+      <h2 id="pptSlideTitle">
+        Lesson
+      </h2>
+
+      <p
+        id="pptSlideBody"
+        class="ppt-body"
+      ></p>
+
+      <ul
+        id="pptBullets"
+        class="ppt-bullets"
+      ></ul>
+
+      <div
+        id="pptExample"
+        class="ppt-example"
+      ></div>
+
+    </div>
+
+    <div class="ppt-navigation">
+
+      <button
+        id="pptPrevButton"
+        class="secondary-button"
+        type="button"
+        onclick="previousPresentationSlide()"
+      >
+        ◀ PREVIOUS
+      </button>
+
+      <button
+        id="pptNextButton"
+        class="primary-button"
+        type="button"
+        onclick="nextPresentationSlide()"
+      >
+        NEXT ▶
+      </button>
+
+      <button
+        id="pptStartButton"
+        class="start-activity-button"
+        type="button"
+        onclick="openLevels()"
+        hidden
+      >
+        🎯 START ACTIVITIES
+      </button>
+
+    </div>
+
+    <div class="ppt-original-topic" hidden>
+
+      <div
+        id="topicContent"
+        class="feature-list"
+      ></div>
+
+      <div id="topicRemember">
+        Remember
+      </div>
+
+    </div>
+
+    <button
+      class="back-button"
+      type="button"
+      onclick="showPage('weekPage')"
+    >
+      ← BACK TO WEEKS
+    </button>
+
+  </div>
+
+</section>
+
+<section id="levelPage" class="page adventure-page">
+
+  <div class="adventure-header">
+
+    <div class="header-mascot">
+      🎯
+    </div>
+
+    <h1>
+      CHOOSE ACTIVITY LEVEL
+    </h1>
+
+    <p id="selectedWeekLabel">
+      Choose your level.
+    </p>
+
+  </div>
+
+  <div class="operation-container">
+
+    <div class="operation addition">
+
+      <div class="operation-image">
+        <div class="fallback-icon">🌱</div>
+      </div>
+
+      <h2>Beginner</h2>
+
+      <p>
+        Basic practice for learning the topic.
+      </p>
+
+      <button
+        type="button"
+        onclick="startActivity('Beginner')"
+      >
+        🌱 START
+      </button>
+
+    </div>
+
+    <div class="operation subtraction">
+
+      <div class="operation-image">
+        <div class="fallback-icon">🔎</div>
+      </div>
+
+      <h2>Explorer</h2>
+
+      <p>
+        More practice with different questions.
+      </p>
+
+      <button
+        type="button"
+        onclick="startActivity('Explorer')"
+      >
+        🔎 START
+      </button>
+
+    </div>
+
+    <div class="operation multiplication">
+
+      <div class="operation-image">
+        <div class="fallback-icon">💪</div>
+      </div>
+
+      <h2>Challenger</h2>
+
+      <p>
+        More challenging mathematics questions.
+      </p>
+
+      <button
+        type="button"
+        onclick="startActivity('Challenger')"
+      >
+        💪 START
+      </button>
+
+    </div>
+
+    <div class="operation division">
+
+      <div class="operation-image">
+        <div class="fallback-icon">🏆</div>
+      </div>
+
+      <h2>Math Master</h2>
+
+      <p>
+        Highest challenge for Math learners.
+      </p>
+
+      <button
+        type="button"
+        onclick="startActivity('Math Master')"
+      >
+        🏆 START
+      </button>
+
+    </div>
+
+  </div>
+
+  <button
+    class="back-button"
+    type="button"
+    onclick="showPage('topicPage')"
+  >
+    ← BACK TO TOPIC
+  </button>
+
+</section>
+
+<section id="activityPage" class="page">
+
+  <div class="card activity-card">
+
+    <div class="activity-top">
+
+      <span id="operationBadge">
+        📚 First Term
+      </span>
+
+      <span id="levelBadge">
+        🌱 Beginner
+      </span>
+
+    </div>
+
+    <div class="question-progress">
+      Question
+      <span id="questionNumber">1</span>
+      of 10
+    </div>
+
+    <div class="progress-bar-container">
+
+      <div
+        id="questionProgressBar"
+        class="progress-bar"
+      ></div>
+
+    </div>
+
+    <div class="activity-type">
+
+      <span id="activityType">
+        Multiple Choice
+      </span>
+
+    </div>
+
+    <h2
+      id="questionTitle"
+      class="question-title"
+    >
+      Let's solve it!
+    </h2>
+
+    <div
+      id="visualArea"
+      class="visual-area"
+    >
+      🧮
+    </div>
+
+    <div
+      id="questionText"
+      class="question-text"
+    >
+      Question
+    </div>
+
+    <div
+      id="answerArea"
+      class="answer-area"
+    ></div>
+
+    <div
+      id="feedback"
+      class="feedback"
+    ></div>
+
+    <button
+      id="submitButton"
+      class="submit-button"
+      type="button"
+      onclick="submitAnswer()"
+    >
+      ✅ CHECK ANSWER
+    </button>
+
+    <button
+      id="nextButton"
+      class="next-button"
+      type="button"
+      onclick="nextQuestion()"
+      hidden
+    >
+      ➡️ NEXT QUESTION
+    </button>
+
+    <button
+      class="back-button small-back"
+      type="button"
+      onclick="exitActivity()"
+    >
+      ← EXIT ACTIVITY
+    </button>
+
+  </div>
+
+</section>
+
+<section id="resultPage" class="page">
+
+  <div class="card result-card">
+
+    <div class="result-emoji">
+      🏆
+    </div>
+
+    <h1>
+      Activity Complete!
+    </h1>
+
+    <p>
+      Great work,
+      <span id="resultName">
+        Student
+      </span>!
+    </p>
+
+    <div class="score-circle">
+
+      <span id="finalScore">
+        0
+      </span>
+
+      <small>
+        / 10
+      </small>
+
+    </div>
+
+    <h2 id="resultMessage">
+      Activity result
+    </h2>
+
+    <div
+      id="resultStars"
+      class="stars"
+    >
+      ⭐ ⭐ ⭐
+    </div>
+
+    <div class="home-buttons">
+
+      <button
+        class="primary-button"
+        type="button"
+        onclick="showProgress()"
+      >
+        📊 VIEW MY PROGRESS
+      </button>
+
+      <button
+        class="secondary-button"
+        type="button"
+        onclick="openLevels()"
+      >
+        🎯 PLAY AGAIN
+      </button>
+
+      <button
+        class="progress-button"
+        type="button"
+        onclick="showPage('homePage')"
+      >
+        🏠 HOME
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="progressPage" class="page">
+
+  <div class="card">
+
+    <div class="big-emoji">
+      📊
+    </div>
+
+    <h1>
+      My Progress
+    </h1>
+
+    <p>
+      See your completed activities and scores here.
+    </p>
+
+    <div
+      id="progressEmpty"
+      class="progress-empty"
+    >
+      📭 No records yet.
+      Start a weekly activity to create
+      your first record!
+    </div>
+
+    <div
+      id="progressRecords"
+      class="progress-records"
+    ></div>
+
+    <div
+      id="progressMessage"
+      class="progress-message"
+    >
+      📚 Your weekly learning progress
+      is recorded here.
+    </div>
+
+    <div class="home-buttons">
+
+      <button
+        class="primary-button"
+        type="button"
+        onclick="showPage('termPage')"
+      >
+        📚 STUDY MORE
+      </button>
+
+      <button
+        class="secondary-button"
+        type="button"
+        onclick="changePlayer()"
+      >
+        👤 CHANGE PLAYER
+      </button>
+
+      <button
+        class="progress-button"
+        type="button"
+        onclick="showPage('homePage')"
+      >
+        🏠 HOME
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="aboutPage" class="page">
+
+  <div class="card">
+
+    <div class="big-emoji">
+      🧮
+    </div>
+
+    <h1>
+      About Math Adventure
+    </h1>
+
+    <p>
+      Math Adventure is an offline interactive
+      Grade 3 Mathematics learning system
+      organized according to the weekly
+      competencies of the First, Second,
+      and Third Terms.
+    </p>
+
+    <div class="feature-list">
+
+      <div>📗 First Term — Weeks 1–10</div>
+      <div>📘 Second Term — Weeks 1–10</div>
+      <div>📕 Third Term — Weeks 1–10</div>
+      <div>📖 Weekly Topic Presentation</div>
+      <div>🎯 4 Activity Levels</div>
+      <div>🔘 Multiple Choice Activities</div>
+      <div>🧠 Mathematics Practice</div>
+      <div>🔊 Sound and Voice Feedback</div>
+      <div>📊 My Progress</div>
+      <div>📱 Mobile Friendly</div>
+      <div>💾 Offline Learning Support</div>
+
+    </div>
+
+    <button
+      class="primary-button"
+      type="button"
+      onclick="showPage('homePage')"
+    >
+      ← BACK HOME
+    </button>
+
+  </div>
+
+</section>
+
+<section id="helpPage" class="page">
+
+  <div class="card">
+
+    <div class="big-emoji">
+      ❓
+    </div>
+
+    <h1>
+      How to Use Math Adventure
+    </h1>
+
+    <div class="feature-list">
+
+      <div>
+        <strong>1. Login</strong><br>
+        Enter your name to start.
+      </div>
+
+      <div>
+        <strong>2. Choose a Term</strong><br>
+        Select First, Second, or Third Term.
+      </div>
+
+      <div>
+        <strong>3. Choose a Week</strong><br>
+        Select one of the 10 weekly topics.
+      </div>
+
+      <div>
+        <strong>4. Study the Topic Presentation</strong><br>
+        Read the teacher-ready lesson
+        presentation from beginning to end.
+      </div>
+
+      <div>
+        <strong>5. Choose Activity Level</strong><br>
+        Choose Beginner, Explorer,
+        Challenger, or Math Master.
+      </div>
+
+      <div>
+        <strong>6. Answer 10 Questions</strong><br>
+        Read each question carefully
+        and select your answer.
+      </div>
+
+      <div>
+        <strong>7. Check Your Result</strong><br>
+        Your score will be displayed
+        after the activity.
+      </div>
+
+      <div>
+        <strong>8. View My Progress</strong><br>
+        Your completed activities
+        and scores are saved.
+      </div>
+
+    </div>
+
+    <button
+      class="primary-button"
+      type="button"
+      onclick="showPage('homePage')"
+    >
+      ← BACK HOME
+    </button>
+
+  </div>
+
+</section>
+
+<div id="temporaryMessage" hidden></div>
+
+<footer>
+  <p>
+    🧮 Math Adventure |
+    Grade 3 Mathematics |
+    Offline Interactive Learning
+  </p>
+</footer>
+
+<script src="./script.js"></script>
+
+</body>
+</html>

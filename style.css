@@ -1,0 +1,1284 @@
+:root{
+  --blue:#2878ff;
+  --navy:#173f9f;
+  --sky:#5cc8ff;
+  --purple:#8b5cf6;
+  --pink:#ff5f9e;
+  --yellow:#ffd43b;
+  --orange:#ff9f1c;
+  --green:#20c997;
+  --red:#ff5b61;
+  --white:#fff;
+  --dark:#26345c;
+  --gray:#718096;
+  --light:#f5f9ff;
+  --shadow:0 18px 45px rgba(23,63,159,.14);
+  --radius:24px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  color:var(--dark);
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255,212,59,.35) 0 70px,
+      transparent 72px
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(255,95,158,.22) 0 90px,
+      transparent 92px
+    ),
+    radial-gradient(
+      circle at 20% 90%,
+      rgba(32,201,151,.2) 0 110px,
+      transparent 112px
+    ),
+    linear-gradient(
+      135deg,
+      #eef7ff,
+      #fff8ed 48%,
+      #f6efff
+    );
+
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"+   ÷   ×   −   =   ⭐   🧮";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.045;
+  font-size:42px;
+  line-height:2.7;
+  word-spacing:28px;
+  z-index:-1;
+}
+
+/* TOP BAR */
+
+.top-bar{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+
+  padding:12px 5%;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #2878ff,
+      #00c9a7,
+      #ff5f9e
+    );
+
+  background-size:300% 300%;
+
+  animation:rainbowBar 8s ease infinite;
+
+  box-shadow:
+    0 8px 25px rgba(40,120,255,.2);
+}
+
+.top-bar h2{
+  margin:0;
+  font-size:1.25rem;
+}
+
+.top-controls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.top-controls button{
+  border:2px solid rgba(255,255,255,.65);
+  background:rgba(255,255,255,.16);
+  color:#fff;
+  border-radius:14px;
+  padding:8px 12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.top-controls button:hover{
+  background:#fff;
+  color:var(--navy);
+}
+
+@keyframes rainbowBar{
+  0%,100%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+}
+
+/* PAGE */
+
+.page{
+  display:none;
+  min-height:calc(100vh - 65px);
+  padding:35px 5% 60px;
+}
+
+.page.active{
+  display:block;
+}
+
+/* CARDS */
+
+.card,
+.ppt-shell{
+  max-width:1050px;
+  margin:20px auto;
+
+  background:rgba(255,255,255,.95);
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  padding:38px;
+
+  border:3px solid rgba(255,255,255,.8);
+}
+
+.card{
+  text-align:center;
+}
+
+.login-card{
+  max-width:620px;
+  margin:55px auto;
+}
+
+.big-emoji,
+.header-mascot,
+.result-emoji{
+  font-size:72px;
+  line-height:1;
+  margin-bottom:15px;
+}
+
+.card h1,
+.ppt-heading h1{
+  color:var(--navy);
+  margin:8px 0 12px;
+  font-size:clamp(2rem,4vw,3.1rem);
+}
+
+.card p{
+  font-size:1.05rem;
+  line-height:1.65;
+}
+
+/* INPUT */
+
+.login-card input,
+.fill-input{
+  width:100%;
+
+  padding:16px 18px;
+
+  border:3px solid #d7e4ff;
+
+  border-radius:16px;
+
+  font-size:1.05rem;
+
+  outline:none;
+
+  margin:12px 0;
+
+  background:#fff;
+}
+
+.login-card input:focus,
+.fill-input:focus{
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 5px rgba(40,120,255,.12);
+}
+
+/* BUTTONS */
+
+button{
+  font-family:inherit;
+}
+
+.primary-button,
+.secondary-button,
+.progress-button,
+.back-button,
+.submit-button,
+.next-button,
+.start-activity-button,
+.operation button{
+  border:0;
+
+  border-radius:16px;
+
+  padding:14px 20px;
+
+  font-size:1rem;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:
+    .18s transform,
+    .18s box-shadow,
+    .18s filter;
+}
+
+.primary-button{
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--purple)
+    );
+
+  color:#fff;
+
+  box-shadow:
+    0 8px 20px rgba(40,120,255,.25);
+}
+
+.secondary-button{
+  background:#eaf2ff;
+  color:var(--navy);
+}
+
+.progress-button{
+  background:#fff3c4;
+  color:#7a5900;
+}
+
+.back-button{
+  background:#eef2f8;
+  color:var(--dark);
+  margin-top:22px;
+}
+
+.submit-button{
+  background:
+    linear-gradient(
+      135deg,
+      #ff9f1c,
+      #ff5f9e
+    );
+
+  color:#fff;
+
+  width:100%;
+
+  margin-top:18px;
+}
+
+.next-button,
+.start-activity-button{
+  background:
+    linear-gradient(
+      135deg,
+      #20c997,
+      #2878ff
+    );
+
+  color:#fff;
+
+  width:100%;
+
+  margin-top:12px;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.progress-button:hover,
+.back-button:hover,
+.submit-button:hover,
+.next-button:hover,
+.start-activity-button:hover,
+.operation button:hover{
+  transform:translateY(-2px);
+
+  filter:brightness(1.03);
+
+  box-shadow:
+    0 8px 18px rgba(23,63,159,.15);
+}
+
+/* HOME */
+
+.home-buttons{
+  display:grid;
+  gap:12px;
+  max-width:620px;
+  margin:24px auto 0;
+}
+
+.fruit-row{
+  font-size:38px;
+  margin:18px 0;
+}
+
+/* TERM / WEEK / LEVEL */
+
+.adventure-page .adventure-header{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 28px;
+}
+
+.adventure-header h1{
+  color:var(--navy);
+  margin:10px 0;
+  font-size:clamp(1.8rem,4vw,2.7rem);
+}
+
+.adventure-header p{
+  margin:0;
+  color:var(--gray);
+}
+
+.operation-container{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:22px;
+
+  max-width:1200px;
+
+  margin:0 auto;
+}
+
+.operation{
+  background:#fff;
+
+  border-radius:24px;
+
+  padding:24px;
+
+  text-align:center;
+
+  box-shadow:
+    0 12px 30px rgba(23,63,159,.1);
+
+  border-top:8px solid var(--blue);
+
+  transition:.2s;
+}
+
+.operation:hover{
+  transform:translateY(-5px);
+}
+
+.operation.addition{
+  border-top-color:#20c997;
+}
+
+.operation.subtraction{
+  border-top-color:#ff9f1c;
+}
+
+.operation.multiplication{
+  border-top-color:#8b5cf6;
+}
+
+.operation.division{
+  border-top-color:#ff5f9e;
+}
+
+.operation-image{
+  height:110px;
+
+  display:grid;
+
+  place-items:center;
+}
+
+.fallback-icon{
+  font-size:65px;
+}
+
+.operation h2{
+  margin:10px 0 7px;
+  color:var(--navy);
+}
+
+.operation p{
+  min-height:55px;
+
+  color:var(--gray);
+
+  line-height:1.5;
+}
+
+.operation button{
+  background:var(--navy);
+  color:#fff;
+  width:100%;
+  margin-top:8px;
+}
+
+/* ======================================================
+   PPT TOPIC PRESENTATION
+====================================================== */
+
+.ppt-shell{
+  max-width:1150px;
+
+  padding:
+    28px
+    34px
+    34px;
+}
+
+.ppt-heading{
+  display:flex;
+
+  align-items:center;
+
+  gap:20px;
+
+  border-bottom:
+    3px solid #edf2ff;
+
+  padding-bottom:18px;
+}
+
+.ppt-heading .big-emoji{
+  font-size:62px;
+  margin:0;
+}
+
+.ppt-kicker{
+  display:inline-block;
+
+  background:#e9efff;
+
+  color:var(--navy);
+
+  padding:7px 12px;
+
+  border-radius:999px;
+
+  font-size:.78rem;
+
+  font-weight:900;
+
+  letter-spacing:.08em;
+}
+
+.ppt-subtitle{
+  margin:0;
+  color:var(--purple);
+  font-weight:900;
+}
+
+.ppt-progress-track{
+  height:12px;
+
+  background:#e9eef8;
+
+  border-radius:99px;
+
+  margin:20px 0 8px;
+
+  overflow:hidden;
+}
+
+.ppt-progress-bar{
+  height:100%;
+
+  width:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff5f9e,
+      #ff9f1c,
+      #ffd43b,
+      #20c997,
+      #2878ff,
+      #8b5cf6
+    );
+
+  transition:
+    width .3s ease;
+}
+
+.ppt-slide-counter{
+  text-align:right;
+
+  color:var(--gray);
+
+  font-weight:900;
+
+  margin-bottom:10px;
+}
+
+.ppt-slide{
+  position:relative;
+
+  min-height:520px;
+
+  border-radius:28px;
+
+  padding:
+    42px
+    48px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f5f9ff
+    );
+
+  border:4px solid #e5edff;
+
+  box-shadow:
+    inset 0 0 0 2px #fff,
+    0 16px 35px rgba(40,120,255,.1);
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  overflow:hidden;
+}
+
+.ppt-slide:before{
+  content:"";
+
+  position:absolute;
+
+  width:230px;
+  height:230px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,212,59,.17);
+
+  right:-75px;
+  top:-75px;
+}
+
+.ppt-slide:after{
+  content:"";
+
+  position:absolute;
+
+  width:160px;
+  height:160px;
+
+  border-radius:50%;
+
+  background:
+    rgba(139,92,246,.1);
+
+  left:-55px;
+  bottom:-55px;
+}
+
+.ppt-icon{
+  position:relative;
+  z-index:1;
+
+  font-size:76px;
+
+  margin-bottom:12px;
+}
+
+.ppt-tag{
+  position:relative;
+  z-index:1;
+
+  display:inline-block;
+
+  align-self:flex-start;
+
+  background:#fff1f7;
+
+  color:#e13b79;
+
+  border-radius:999px;
+
+  padding:7px 13px;
+
+  font-weight:900;
+
+  font-size:.8rem;
+
+  letter-spacing:.06em;
+}
+
+.ppt-slide h2{
+  position:relative;
+  z-index:1;
+
+  font-size:
+    clamp(
+      1.8rem,
+      4vw,
+      3rem
+    );
+
+  color:var(--navy);
+
+  margin:14px 0;
+}
+
+.ppt-body{
+  position:relative;
+  z-index:1;
+
+  font-size:1.16rem;
+
+  line-height:1.8;
+
+  max-width:900px;
+}
+
+.ppt-bullets{
+  position:relative;
+  z-index:1;
+
+  max-width:900px;
+
+  margin:8px 0 0;
+
+  padding-left:30px;
+}
+
+.ppt-bullets li{
+  font-size:1.05rem;
+
+  line-height:1.7;
+
+  margin:8px 0;
+}
+
+.ppt-example{
+  position:relative;
+  z-index:1;
+
+  margin-top:20px;
+
+  background:#fff8d9;
+
+  border-left:
+    7px solid
+    var(--yellow);
+
+  border-radius:15px;
+
+  padding:
+    17px
+    20px;
+
+  font-size:1.05rem;
+
+  line-height:1.65;
+}
+
+.ppt-navigation{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:12px;
+
+  margin-top:18px;
+}
+
+.ppt-navigation
+.start-activity-button{
+  grid-column:1/-1;
+}
+
+.ppt-original-topic{
+  display:none;
+}
+
+/* ======================================================
+   ACTIVITY
+====================================================== */
+
+.activity-card{
+  max-width:1000px;
+}
+
+.activity-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+}
+
+.activity-top span{
+  padding:8px 13px;
+
+  border-radius:999px;
+
+  font-weight:900;
+}
+
+.activity-top span:first-child{
+  background:#eaf2ff;
+  color:var(--navy);
+}
+
+.activity-top span:last-child{
+  background:#fff1c9;
+  color:#775700;
+}
+
+.question-progress{
+  text-align:center;
+
+  font-weight:900;
+
+  margin:18px 0 8px;
+}
+
+.progress-bar-container{
+  height:13px;
+
+  background:#e9eef8;
+
+  border-radius:99px;
+
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+
+  width:10%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--pink),
+      var(--orange),
+      var(--green),
+      var(--blue)
+    );
+
+  transition:.25s;
+}
+
+.activity-type{
+  text-align:center;
+
+  margin:20px 0 10px;
+}
+
+.activity-type span{
+  background:#f0ebff;
+
+  color:#6a43d8;
+
+  padding:7px 13px;
+
+  border-radius:999px;
+
+  font-weight:900;
+}
+
+.question-title{
+  text-align:center;
+
+  color:var(--navy);
+
+  font-size:
+    clamp(
+      1.4rem,
+      3vw,
+      2.1rem
+    );
+}
+
+.visual-area{
+  min-height:100px;
+
+  display:grid;
+
+  place-items:center;
+
+  text-align:center;
+
+  font-size:60px;
+
+  padding:12px;
+}
+
+.question-text{
+  text-align:center;
+
+  font-size:1.25rem;
+
+  line-height:1.6;
+
+  font-weight:800;
+
+  margin:
+    8px auto
+    18px;
+
+  max-width:850px;
+}
+
+.answer-area{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+}
+
+.choice-button{
+  min-height:115px;
+
+  background:#fff;
+
+  border:
+    4px solid
+    #dbe7ff;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+  padding:15px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:8px;
+
+  transition:.18s;
+}
+
+.choice-button:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 10px 20px
+    rgba(40,120,255,.12);
+}
+
+.choice-button.selected{
+  border-color:var(--blue);
+
+  background:#eef6ff;
+
+  box-shadow:
+    0 0 0 5px
+    rgba(40,120,255,.1);
+}
+
+.choice-emoji{
+  font-size:50px;
+  line-height:1;
+}
+
+.choice-label{
+  font-weight:900;
+
+  color:var(--dark);
+
+  font-size:.95rem;
+}
+
+.fill-input{
+  text-align:center;
+  font-size:1.3rem;
+}
+
+.feedback{
+  min-height:45px;
+
+  margin-top:14px;
+
+  border-radius:15px;
+
+  padding:12px;
+
+  font-weight:900;
+
+  text-align:center;
+}
+
+.feedback.correct{
+  background:#dff9ef;
+  color:#087a55;
+}
+
+.feedback.wrong{
+  background:#ffe2e4;
+  color:#b12d37;
+}
+
+.small-back{
+  width:100%;
+}
+
+/* ======================================================
+   RESULT / PROGRESS
+====================================================== */
+
+.score-circle{
+  width:190px;
+  height:190px;
+
+  border-radius:50%;
+
+  margin:25px auto;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:4px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd43b,
+      #ff9f1c
+    );
+
+  border:10px solid #fff;
+
+  box-shadow:
+    0 15px 35px
+    rgba(255,159,28,.25);
+
+  font-size:4rem;
+
+  font-weight:900;
+
+  color:#7a4c00;
+}
+
+.score-circle small{
+  font-size:1.2rem;
+}
+
+.stars{
+  font-size:35px;
+}
+
+.progress-empty,
+.progress-message{
+  padding:18px;
+
+  border-radius:16px;
+
+  background:#f4f7ff;
+
+  margin:16px 0;
+
+  font-weight:800;
+}
+
+.progress-records{
+  display:grid;
+
+  gap:14px;
+
+  text-align:left;
+}
+
+.progress-record{
+  background:#fff;
+
+  border:
+    3px solid
+    #e4ebfa;
+
+  border-radius:20px;
+
+  padding:18px;
+}
+
+.progress-record-title{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  color:var(--navy);
+
+  margin-bottom:14px;
+}
+
+.progress-record-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+}
+
+.progress-record-grid > div{
+  background:#f7faff;
+
+  border-radius:13px;
+
+  padding:12px;
+}
+
+.progress-record-grid small{
+  display:block;
+
+  color:var(--gray);
+
+  margin-bottom:4px;
+}
+
+.progress-record-grid strong{
+  display:block;
+}
+
+/* FEATURE LIST */
+
+.feature-list{
+  display:grid;
+
+  gap:10px;
+
+  text-align:left;
+
+  margin:22px 0;
+}
+
+.feature-list > div{
+  background:#f5f9ff;
+
+  padding:14px 16px;
+
+  border-radius:15px;
+
+  border-left:
+    5px solid
+    var(--blue);
+
+  line-height:1.5;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+
+  padding:18px;
+
+  color:#60708f;
+
+  font-size:.9rem;
+}
+
+/* ======================================================
+   TABLET
+====================================================== */
+
+@media(max-width:900px){
+
+  .operation-container{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .ppt-slide{
+    min-height:480px;
+  }
+
+  .progress-record-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media(max-width:650px){
+
+  .top-bar{
+    padding:10px 4%;
+
+    align-items:flex-start;
+  }
+
+  .top-bar h2{
+    font-size:1rem;
+  }
+
+  .top-controls{
+    justify-content:flex-end;
+  }
+
+  .top-controls button{
+    padding:7px 9px;
+  }
+
+  .page{
+    padding:
+      22px
+      4%
+      45px;
+  }
+
+  .card,
+  .ppt-shell{
+    padding:
+      22px
+      17px;
+
+    border-radius:20px;
+  }
+
+  .big-emoji{
+    font-size:58px;
+  }
+
+  .operation-container{
+    grid-template-columns:1fr;
+  }
+
+  .operation p{
+    min-height:auto;
+  }
+
+  .ppt-heading{
+    align-items:flex-start;
+
+    gap:12px;
+  }
+
+  .ppt-heading .big-emoji{
+    font-size:50px;
+  }
+
+  .ppt-kicker{
+    font-size:.68rem;
+  }
+
+  .ppt-slide{
+    min-height:540px;
+
+    padding:
+      28px
+      22px;
+  }
+
+  .ppt-icon{
+    font-size:60px;
+  }
+
+  .ppt-body{
+    font-size:1rem;
+
+    line-height:1.65;
+  }
+
+  .ppt-bullets{
+    padding-left:22px;
+  }
+
+  .ppt-bullets li{
+    font-size:.96rem;
+  }
+
+  .ppt-navigation{
+    grid-template-columns:1fr;
+  }
+
+  .answer-area{
+    grid-template-columns:1fr;
+  }
+
+  .choice-button{
+    min-height:100px;
+  }
+
+  .progress-record-grid{
+    grid-template-columns:1fr;
+  }
+
+  .score-circle{
+    width:160px;
+    height:160px;
+
+    font-size:3.3rem;
+  }
+
+  .home-buttons{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(min-width:651px){
+
+  .ppt-navigation
+  .secondary-button,
+  .ppt-navigation
+  .primary-button{
+    min-height:54px;
+  }
+
+}

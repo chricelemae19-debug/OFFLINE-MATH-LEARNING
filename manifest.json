@@ -1,0 +1,24 @@
+{
+  "name": "Math Adventure",
+  "short_name": "Math Adventure",
+  "description": "An offline interactive mathematics learning system for Grade 3 pupils.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fc",
+  "theme_color": "#0a2472",
+  "orientation": "any",
+  "scope": "./",
+  "lang": "en",
+  "categories": [
+    "education",
+    "games"
+  ],
+  "icons": [
+    {
+      "src": "./image/math-adventure.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
